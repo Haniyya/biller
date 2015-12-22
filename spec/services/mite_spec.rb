@@ -1,11 +1,13 @@
 
 describe Mite do
   before :all do
-    Mite.key = ENV['MITE_API_KEY']
+    Mite.key = Biller::Secrets.mite_api_key
+    Mite.account = Biller::Secrets.mite_user
   end
 
   it 'has a api-key' do
-    expect(ENV['MITE_API_KEY']).not_to eq nil
+    expect(Mite.key).to be_a String
+    expect(Mite.key.empty?).to be false
   end
 
   it 'is authenticated' do
